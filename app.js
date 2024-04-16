@@ -4,8 +4,9 @@ function rand(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const GameSet = document.querySelector(".matrix-set");
-
+const GameBalls = document.querySelectorAll(".ball");
+const oneBall = document.querySelector(".ball");
+console.log(oneBall);
 let numArray = [];
 let randNum;
 
@@ -16,18 +17,27 @@ do {
   }
 } while (numArray.length < 25);
 
-console.log(numArray);
+let startX = 10;
+let startY = 10;
+GameBalls.forEach((el, i) => {
+  el.innerHTML = numArray[i];
+  if (startX > 530) {
+    startX = 10;
+    startY += 110;
+    count = 0;
+  }
+  GameBalls[i].style.left = startX + "px";
+  GameBalls[i].style.top = startY + "px";
+  startX += 130;
+});
 
-for (let i = 0; i < 25; i++) {
-  GameSet.innerHTML += "<span>" + numArray[i] + "</span>";
-}
+// function getBalls() {
+//   GameBalls.forEach((a, i) => {
+//     GameBalls[0].style.right = "0px";
+//     GameBalls[0].style.top = "0px";
+//   });
+// }
 
-console.log(GameSet);
-
-const spanTest = document.querySelector("span");
-console.log(spanTest);
-spanTest.addEventListener("click", (_) => {
-  spanTest.style.position = "absolute";
-  spanTest.style.right = 0;
-  spanTest.style.top = 0;
+oneBall.addEventListener("click", (_) => {
+  oneBall.style.left = "1180px";
 });

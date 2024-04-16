@@ -14,7 +14,7 @@ body {
 
 .content-container {
   width: 1300px;
-  height: 600px;
+  height: 670px;
   border: solid 4px rgba(134, 37, 53, 0.755);
   border-radius: 4px;
 }
@@ -36,14 +36,7 @@ body {
   height: 100%;
   border-right: solid 1px red;
   background-color: aquamarine;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.matrix-set {
-  padding-left: 10px;
-  padding-top: 5px;
+  padding: 10px;
 }
 
 .matrix-unset {
@@ -51,23 +44,59 @@ body {
   width: 50%;
 }
 
-.matrix-set span {
+.ball {
   border: solid 1px red;
-  width: 120px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   text-align: center;
   align-content: center;
-  position: relative;
+  position: absolute;
   transition: all 0.5 ease-in;
 }
 
-span:hover {
+.ball:hover {
   cursor: pointer;
 }
+/* left + 130px
+top + 110px */
 
-.matrix-set span:first-child {
-  border-color: green;
-  bottom: 0;
-  left: 20;
+/* .matrix-set .ball:nth-child(2) {
+  left: 150px; 
+  top: 10px;
 }
+
+.matrix-set .ball:nth-child(3) {
+  left: 280px;
+  top: 10px;
+}
+
+.matrix-set .ball:nth-child(4) {
+  left: 410px;
+  top: 10px;
+}
+
+.matrix-set .ball:nth-child(5) {
+  left: 540px;
+  top: 10px;
+}
+
+.matrix-set .ball:nth-child(6) {
+  left: 10px;
+  top: 120px;
+}
+
+.matrix-set .ball:nth-child(7) {
+  left: 10px;
+  top: 230px;
+}
+
+.matrix-set .ball:nth-child(8) {
+  left: 10px;
+  top: 340px;
+}
+
+.matrix-set .ball:nth-child(9) {
+  left: 10px;
+  top: 450px;
+} */
