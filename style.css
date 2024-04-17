@@ -52,7 +52,7 @@ body {
   text-align: center;
   align-content: center;
   position: absolute;
-  transition: all 0.5 ease-in;
+  transition: all 1s ease-in;
 }
 
 .ball:hover {
