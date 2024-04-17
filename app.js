@@ -7,11 +7,18 @@ function rand(min, max) {
 const GameBalls = document.querySelectorAll(".ball");
 const oneBall = document.querySelector(".ball");
 const reset = document.querySelector(".reset");
+const start = document.querySelector(".start");
+
+
 
 let numArray = [];
 let randNum;
+
 function placeRandNum() {
   do {
+    if (numArray.length == 25) {
+      numArray = [];
+    }
     randNum = rand(1, 25);
     if (!numArray.includes(randNum)) {
       numArray.push(randNum);
@@ -20,6 +27,9 @@ function placeRandNum() {
 }
 
 placeRandNum();
+console.log(numArray);
+placeRandNum();
+console.log(numArray);
 
 function GameSet() {
   let startX = 10;
@@ -62,6 +72,11 @@ getBalls();
 
 reset.addEventListener("click", (_) => {
   placeRandNum();
+  console.log(numArray);
   GameSet();
   getBalls();
+});
+
+start.addEventListener("click", (_) => {
+  GameBalls.forEach((e) => (e.style.visibility = "visible"));
 });
