@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
     <script src="/app.js" defer></script>
     <title>matrix game</title>
     <!-- https://a-kija.github.io/game01/ -->
@@ -12,9 +18,14 @@
   <body>
     <div class="content-container">
       <div class="header">
-        <button class="start">Start</button>
-        <button class="reset">Reset</button>
-        <div class="clock"></div>
+        <div class="buttons">
+          <button class="start">Start</button>
+          <button class="reset">Reset</button>
+        </div>
+
+        <div class="clock">7</div>
+        <!-- <div id="clock">AI kodas</div>  -->
+        <span class="alert-message">You</span>
       </div>
 
       <div class="game-board">
