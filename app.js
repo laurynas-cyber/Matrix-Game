@@ -57,13 +57,17 @@ function GameSet() {
 }
 GameSet();
 
-function getBalls() {
+let functionsExecuted = false;
+let getBalls = function () {
+  // this.removeEventListener("click", getBalls);
+  // if (!functionsExecuted) {
   let startX_Set = 1180;
   let startY_Set = 10;
   let count2 = 1;
+
   GameBalls.forEach((a, i) => {
     a.addEventListener("click", (e) => {
-      if (a.innerText == count2) {
+      if (a.innerText == count2 && Alert.innerText != "Your time ran out") {
         a.style.left = startX_Set + "px";
         a.style.top = startY_Set + "px";
         count2++;
@@ -75,67 +79,52 @@ function getBalls() {
       }
     });
   });
-}
+  // reset.removeEventListener("click", getBalls);
+  //   functionsExecuted = true;
+  // }
+};
 
 getBalls();
 
-//AI kodas
-// start.addEventListener("click", startCountdown);
-
-// function startCountdown() {
-//   // Set the countdown time in seconds
-//   var countdownTime = 10; // 60 seconds
-
-//   // Update the display immediately to show the starting time
-//   updateDisplay(countdownTime);
-
-//   // Start the countdown interval
-//   var countdownInterval = setInterval(function () {
-//     countdownTime--;
-//     updateDisplay(countdownTime);
-
-//     // If countdown reaches zero, clear the interval
-//     if (countdownTime <= 0) {
-//       clearInterval(countdownInterval);
-//       alert("Countdown complete!");
-//     }
-//   }, 1000); // Update every 1 second (1000 milliseconds)
-// }
-
-// function updateDisplay(time) {
-//   // Format seconds into minutes:seconds format
-//   var minutes = Math.floor(time / 60);
-//   var seconds = time % 60;
-
-//   // Display the formatted time in the countdownDisplay element
-//   document.getElementById("clock").innerText = minutes + "m " + seconds + "s";
-// }
-
-// mano kodas
 start.addEventListener("click", (e) => {
   GameBalls.forEach((e) => (e.style.visibility = "visible"));
-  Clock.innerText = 10;
-  setInterval(ClockGo, 1000); //pasileidzia dvi funkcijos
-  // clearInterval(seconds);
-  // console.log(e.type, e);
+  countTime = 30;
+  Alert.innerText = "";
+  clearInterval(timerId);
+  ClockGo();
 });
+
+// reset.addEventListener("click", getBalls, { once: true });
 
 reset.addEventListener("click", (_) => {
+  // this.removeEventListener("click", getBalls);
   placeRandNum();
-  console.log(numArray);
+
   GameSet();
+
   getBalls(); //pasileidzia dvi funkcijos
-  Clock.innerText = 10;
-  // setInterval(ClockGo, 1000);
+  countTime = 30;
+  Alert.innerText = "";
+  clearInterval(timerId);
+  ClockGo();
 });
 
-function ClockGo() {
-  if (Clock.innerText != 0) {
-    Clock.innerText = parseInt(Clock.innerText) - 1;
-  } else if (Clock.innerText >= 0) {
-    Clock.innerText = 0;
-    return (Alert.innerText = "Your time ran out");
-  }
-}
+reset.removeEventListener("click", getBalls);
 
-// let seconds = setInterval(ClockGo, 1000);
+let timerId;
+let countTime = 30;
+Clock.innerText = countTime;
+function ClockGo() {
+  timerId = setInterval(() => {
+    countTime--;
+    Clock.innerText = countTime;
+    if (countTime == 0) {
+      Clock.innerText = "";
+      clearInterval(timerId);
+      return (Alert.innerText = "Your time ran out");
+    }
+    if (countTime < 10) {
+      Clock.innerText = "0" + countTime;
+    }
+  }, 1000);
+}

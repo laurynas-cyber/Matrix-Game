@@ -49,6 +49,10 @@ button {
   font-style: normal;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .game-board {
   border: solid 1px rgb(151, 148, 55);
   height: 85%;
