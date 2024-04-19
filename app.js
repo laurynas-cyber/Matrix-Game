@@ -10,8 +10,7 @@ const reset = document.querySelector(".reset");
 const start = document.querySelector(".start");
 
 const Clock = document.querySelector(".clock");
-// Clock.classList.remove("clock");
-console.log(Clock);
+
 const Alert = document.querySelector(".alert-message");
 
 let numArray = [];
@@ -35,7 +34,7 @@ function placeRandNum() {
 }
 
 placeRandNum();
-console.log(randColors, ColorsArray);
+
 function GameSet() {
   let startX = 10;
   let startY = 10;
@@ -48,7 +47,7 @@ function GameSet() {
     }
     el.style.left = startX + "px";
     el.style.top = startY + "px";
-    // el.style.backgroundColor = ColorsArray[i];
+
     el.style.backgroundImage = `linear-gradient(90deg, ${
       ColorsArray[rand(0, ColorsArray.length)]
     }, ${ColorsArray[rand(0, ColorsArray.length)]})`;
@@ -57,16 +56,16 @@ function GameSet() {
 }
 GameSet();
 
-let functionsExecuted = false;
-let getBalls = function () {
-  // this.removeEventListener("click", getBalls);
-  // if (!functionsExecuted) {
-  let startX_Set = 1180;
-  let startY_Set = 10;
-  let count2 = 1;
-
+let count2 = 1;
+let startX_Set = 1180;
+let startY_Set = 10;
+function getBalls() {
   GameBalls.forEach((a, i) => {
+    a.classList.add("ballShake");
+
     a.addEventListener("click", (e) => {
+      a.classList.remove("set");
+
       if (a.innerText == count2 && Alert.innerText != "Your time ran out") {
         a.style.left = startX_Set + "px";
         a.style.top = startY_Set + "px";
@@ -77,39 +76,54 @@ let getBalls = function () {
           startY_Set += 110;
         }
       }
+      if (a.style.top == "450px" && a.style.left == "660px") {
+        console.log(a.innerText);
+
+        clearInterval(timerId);
+        Clock.innerText = "YOU DID IT!!!";
+        Clock.classList.add("green");
+        setInterval((_) => {
+
+          Clock.classList.toggle("green");
+        }, 1000);
+      }
     });
   });
-  // reset.removeEventListener("click", getBalls);
-  //   functionsExecuted = true;
-  // }
-};
+}
 
-getBalls();
+let flag = true;
 
 start.addEventListener("click", (e) => {
-  GameBalls.forEach((e) => (e.style.visibility = "visible"));
-  countTime = 30;
-  Alert.innerText = "";
-  clearInterval(timerId);
-  ClockGo();
+  if (flag == true) {
+    getBalls();
+    flag = false;
+    GameBalls.forEach((e) => {
+      e.style.visibility = "visible";
+      e.classList.add("set");
+    });
+    clearInterval(timerId);
+    if (countTime != 0) {
+      ClockGo();
+    }
+
+    startX_Set = 1180;
+    startY_Set = 10;
+  }
 });
 
-// reset.addEventListener("click", getBalls, { once: true });
-
 reset.addEventListener("click", (_) => {
-  // this.removeEventListener("click", getBalls);
   placeRandNum();
 
   GameSet();
-
-  getBalls(); //pasileidzia dvi funkcijos
+  count2 = 1;
+  startX_Set = 1180;
+  startY_Set = 10;
+  getBalls();
   countTime = 30;
   Alert.innerText = "";
   clearInterval(timerId);
   ClockGo();
 });
-
-reset.removeEventListener("click", getBalls);
 
 let timerId;
 let countTime = 30;

@@ -19,7 +19,7 @@ body {
 .content-container {
   width: 1300px;
   height: 670px;
-  border: solid 4px rgba(134, 37, 53, 0.755);
+  border: solid 10px rgba(134, 37, 53, 0.755);
   border-radius: 4px;
 }
 
@@ -64,13 +64,14 @@ button:hover {
 .matrix-unset {
   width: 50%;
   height: 100%;
-  border-right: solid 1px red;
+  /* border-right: solid 1px red; */
   background-color: aquamarine;
   padding: 10px;
 }
 
 .matrix-unset {
   background-color: cadetblue;
+  border: none;
   width: 50%;
 }
 
@@ -84,7 +85,19 @@ button:hover {
   position: absolute;
   transition: all 1s ease-in;
   visibility: hidden;
-  /* background-image: linear-gradient(90deg, red, blue); */
+}
+
+.set {
+  animation-name: kuku;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(1, 0.07, 0, 1.03);
+}
+
+.ballShake:active {
+  animation-name: shake !important;
+  animation-duration: 0.1s;
+  animation-iteration-count: 3;
 }
 
 .ball:hover {
@@ -96,45 +109,25 @@ button:hover {
   font-size: 40px;
 }
 
-/* left + 130px
-top + 110px */
-
-/* .matrix-set .ball:nth-child(2) {
-  left: 150px; 
-  top: 10px;
+.green {
+  color: rgb(12, 97, 12);
 }
 
-.matrix-set .ball:nth-child(3) {
-  left: 280px;
-  top: 10px;
+@keyframes kuku {
+  0% {
+    left: 0px;
+  }
 }
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
 
-.matrix-set .ball:nth-child(4) {
-  left: 410px;
-  top: 10px;
+  40% {
+    transform: translateX(7px);
+  }
+
+  100% {
+    transform: translateX(-7px);
+  }
 }
-
-.matrix-set .ball:nth-child(5) {
-  left: 540px;
-  top: 10px;
-}
-
-.matrix-set .ball:nth-child(6) {
-  left: 10px;
-  top: 120px;
-}
-
-.matrix-set .ball:nth-child(7) {
-  left: 10px;
-  top: 230px;
-}
-
-.matrix-set .ball:nth-child(8) {
-  left: 10px;
-  top: 340px;
-}
-
-.matrix-set .ball:nth-child(9) {
-  left: 10px;
-  top: 450px;
-} */
