@@ -85,6 +85,7 @@ button:hover {
   position: absolute;
   transition: all 1s ease-in;
   visibility: hidden;
+
 }
 
 .set {
